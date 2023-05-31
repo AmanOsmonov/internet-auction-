@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали аукциона</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>{{auction.title}}</h1>
+<p>{{auction.description}}</p>
+<p>Стартовая цена {{auction.start_price}} $</p>
+    <p>Дата окончания {{auction.end_time}}</p>
+    <p>Наивышая ставка {{auction.current_bid}}$</p>
+    <p><img src="{MEDIA_UR_}{{auction.image}}"></p>
+
+
+
+{% if user.is_authenticated %}
+  <form method="post" action="{% url 'place_bid' auction_id=auction.id %}">
+    {% csrf_token %}
+    <input type="number" name="bid_amount" step="0.01" required>
+    <button class="btn btn-primary" type="submit">Сделать ставку</button>
+  </form>
+{% else %}
+  <p>Пожалуйста  <a href="{% url 'login' %}">login</a> авторизуйтесь.</p>
+{% endif %}
+
+</div>
+{% endblock %}
+</body>
+</html>

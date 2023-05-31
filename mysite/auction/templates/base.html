@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internet Auction</title>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Интернет аукцион</a>
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выйти</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Регистрация</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Авторизация</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+
+
+  {% block content %}
+   <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <img src="path/to/image.jpg" class="card-img-top" alt="Изображение">
+            <div class="card-body">
+              <h5 class="card-title">Заголовок блока</h5>
+              <p class="card-text">Описание блока Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <img src="path/to/image.jpg" class="card-img-top" alt="Изображение">
+            <div class="card-body">
+              <h5 class="card-title">Заголовок блока</h5>
+              <p class="card-text">Описание блока Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+  <li>
+          <a href="{% url 'auction_detail' auction.id %}">
+            <img src="{{ auction.image.url }}" alt="{{ auction.title }}" class="auction-image">
+          </a>
+
+          <p>{{ auction.description }}</p>
+        </li>
+
+  {% endblock %}
+
+
+ <footer>
+    <div class="container">
+      <p>&copy; 2023 Мой красивый сайт. Все права защищены.</p>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

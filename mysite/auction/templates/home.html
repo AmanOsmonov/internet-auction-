@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет аукцион</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-danger"> Auction.kg</h2>
+<h4  class="text-danger">  торговая площядка</h4>
+  {% if auctions %}
+    <ul>
+      {% for auction in auctions %}
+        <main>
+ <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <img src="{{ auction.image}}" class="card-img-top" alt="Изображение">
+            <div class="card-body">
+              <h5 class="card-title">{{ auction.title }}</h5>
+              <p class="card-text">{{ auction.description }}</p>
+              <a href="{% url 'auction_detail' auction.id %}" class="btn btn-primary">Подробнее</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No auctions available.</p>
+  {% endif %}
+{% endblock %}
+
+
+
+
+
+
+</body>
+</html>
